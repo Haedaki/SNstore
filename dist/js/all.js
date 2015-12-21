@@ -3,13 +3,18 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider){
 // angular.module('app').config(function($stateProvider){
 
 	$urlRouterProvider.otherwise('/error');
+	
+	$stateProvider.state('home', {
+		url:'/',
+		template: '<h1>Homepage</h1>'
+	});
+	$stateProvider.state('about', {
+		url:'/',
+		template: '<h1>About us</h1>'
+	});
 	$stateProvider.state('error', {
 		url:'/error',
 		template: '<h1>Tole je napaka</h1>'
-	});
-	$stateProvider.state('homepage', {
-		url:'/',
-		template: '<h1>Homepage</h1>'
 	});
 	// $stateProvider.state('prva', {
 	// 	url:'/prva/:id',
