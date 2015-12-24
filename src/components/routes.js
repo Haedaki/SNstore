@@ -1,30 +1,26 @@
 angular.module('app').config(function($stateProvider, $urlRouterProvider){
-// angular.module('app').config(function($stateProvider){
 
 	$urlRouterProvider.otherwise('/error');
 	
 	$stateProvider.state('home', {
 		url:'/',
-		template: '<h1>Homepage</h1>'
+		templateUrl: 'index.html',
+		controller:  function ($scope, CategoryFactory)
+		{
+		  $scope.categories = CategoryFactory.query({});
+		}
 	});
-	$stateProvider.state('about', {
-		url:'/',
-		template: '<h1>About us</h1>'
+	$stateProvider.state('category', {
+		url: '/category',
+		templateUrl: '/category.html',
+		controller:  function ($scope, CategoryFactory)
+		{
+		  $scope.categories = CategoryFactory.query({});
+		}
 	});
 	$stateProvider.state('error', {
 		url:'/error',
-		template: '<h1>Tole je napaka</h1>'
+		template: '<h1>Napaka oz. stran ne obstaja.</h1>'
 	});
-	// $stateProvider.state('prva', {
-	// 	url:'/prva/:id',
-	// 	template: '<h1>Prva stran</h1>',
-	// 	controller: function($stateParms, $state){
-	// 		$state.go('error');
-	// 		$state.reload();
-	// 		// alert($stateParms.id);
-	// 		if($state.is('prva')){
-	// 			//do stuff
-	// 		}
-	// 	}
-	// })
+
 });
