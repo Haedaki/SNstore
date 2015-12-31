@@ -1453,13 +1453,26 @@ angular.module('app').factory('CategoryFactory', function ($resource) {
     return $resource('http://smartninja.betoo.si/api/eshop/categories');
     
 });
-angular.module('app').factory('OrderFactory', function($resource){
-	
-	return $resource('http://smartninja.betoo.si/api/eshop/orders');
+angular.module('app').controller('navmenuController', function($scope){
 
+	$scope.example = 'Example from navmenuController'; 
+
+});
+angular.module('app').directive('navMenu', function(){
+	return {
+		restrict: 'E',
+		scope:{}, 
+		controller: 'navmenuController',
+		templateUrl: 'templates/navmenu.html'
+	};
 });
 angular.module('app').factory('ProductFactory', function ($resource) {
 
     return $resource('http://smartninja.betoo.si/api/eshop/products/:id');
+
+});
+angular.module('app').factory('OrderFactory', function($resource){
+	
+	return $resource('http://smartninja.betoo.si/api/eshop/orders');
 
 });
