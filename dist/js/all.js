@@ -5,19 +5,11 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider){
 	
 	$stateProvider.state('home', {
 		url:'/',
-		templateUrl: 'index.html',
-		controller:  function ($scope, CategoryFactory)
-		{
-		  $scope.categories = CategoryFactory.query({});
-		}
-	});
+		template: 'Homepage',
+	}); 
 	$stateProvider.state('category', {
-		url: '/category',
-		templateUrl: '/category.html',
-		controller:  function ($scope, CategoryFactory)
-		{
-		  $scope.categories = CategoryFactory.query({});
-		}
+		url: '/category/:id',
+		templateUrl: 'templates/category.html',
 	});
 	$stateProvider.state('error', {
 		url:'/error',
@@ -1448,15 +1440,16 @@ e=/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u20
 (function(){if(!this.localStorage)if(this.globalStorage)try{this.localStorage=this.globalStorage}catch(p){}else{var f=document.createElement("div");f.style.display="none";document.getElementsByTagName("head")[0].appendChild(f);if(f.addBehavior){f.addBehavior("#default#userdata");var s=this.localStorage={length:0,setItem:function(e,h){f.load("localStorage");e=k(e);f.getAttribute(e)||this.length++;f.setAttribute(e,h);f.save("localStorage")},getItem:function(e){f.load("localStorage");e=k(e);return f.getAttribute(e)},
 removeItem:function(e){f.load("localStorage");e=k(e);f.removeAttribute(e);f.save("localStorage");this.length=0},clear:function(){f.load("localStorage");for(var e=0;attr=f.XMLDocument.documentElement.attributes[e++];)f.removeAttribute(attr.name);f.save("localStorage");this.length=0},key:function(e){f.load("localStorage");return f.XMLDocument.documentElement.attributes[e]}},k=function(e){return e.replace(/[^-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g,
 "-")};f.load("localStorage");s.length=f.XMLDocument.documentElement.attributes.length}}})();
-angular.module('app').factory('CategoryFactory', function ($resource) {
+angular.module('app').controller('navmenuController', function($scope, $q, $http){
 
-    return $resource('http://smartninja.betoo.si/api/eshop/categories');
-    
-});
-angular.module('app').controller('navmenuController', function($scope){
+	var showCategories = [];
 
-	$scope.example = 'Example from navmenuController'; 
-
+ 	return $http.get("http://smartninja.betoo.si/api/eshop/categories").
+    then(function(categories)
+    {
+    	showCategories = categories.data;
+	    $scope.cats = showCategories;
+    })
 });
 angular.module('app').directive('navMenu', function(){
 	return {
@@ -1466,13 +1459,16 @@ angular.module('app').directive('navMenu', function(){
 		templateUrl: 'templates/navmenu.html'
 	};
 });
-angular.module('app').factory('ProductFactory', function ($resource) {
-
-    return $resource('http://smartninja.betoo.si/api/eshop/products/:id');
-
+angular.module('app').factory('CategoryFactory', function ($resource) {
+    return $resource('http://smartninja.betoo.si/api/eshop/categories');    
 });
 angular.module('app').factory('OrderFactory', function($resource){
 	
 	return $resource('http://smartninja.betoo.si/api/eshop/orders');
+
+});
+angular.module('app').factory('ProductFactory', function ($resource) {
+
+    return $resource('http://smartninja.betoo.si/api/eshop/products/:id');
 
 });

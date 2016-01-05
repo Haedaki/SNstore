@@ -4,19 +4,11 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider){
 	
 	$stateProvider.state('home', {
 		url:'/',
-		templateUrl: 'index.html',
-		controller:  function ($scope, CategoryFactory)
-		{
-		  $scope.categories = CategoryFactory.query({});
-		}
-	});
+		template: 'Homepage',
+	}); 
 	$stateProvider.state('category', {
-		url: '/category',
-		templateUrl: '/category.html',
-		controller:  function ($scope, CategoryFactory)
-		{
-		  $scope.categories = CategoryFactory.query({});
-		}
+		url: '/category/:id',
+		templateUrl: 'templates/category.html',
 	});
 	$stateProvider.state('error', {
 		url:'/error',

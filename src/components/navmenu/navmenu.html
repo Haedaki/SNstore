@@ -1,7 +1,6 @@
 <ul class="megamenu skyblue">
-	<li class="active grid"><a class="color1" href="index.html">Home</a></li>
-	<li class="grid"><a class="color2" href="#">new arrivals</a></li>
-	<li ng-repeat="category in categories">
-		<a class="color4" href="#">{{ category.category }}</a>
+	<li class="active grid"><a class="color1" ui-sref="home">Home</a></li>
+	<li ng-repeat="category in cats">
+		<a class="color4" ui-sref="category({id: category.id})">{{ category.category }}</a>
 	</li>    
 </ul>
