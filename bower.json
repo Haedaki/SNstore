@@ -19,6 +19,7 @@
     "bootstrap": "~3.3.6",
     "angular-ui-router": "~0.2.15",
     "angular": "~1.4.8",
-    "angular-resource": "~1.4.8"
+    "angular-resource": "~1.4.8",
+    "angular-locker": "~2.0.3"
   }
 }

@@ -4,10 +4,11 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider){
 	
 	$stateProvider.state('home', {
 		url:'/',
-		template: 'Homepage',
+		templateUrl: 'templates/home.html', 
 	}); 
 	$stateProvider.state('category', {
 		url: '/category/:id',
+		controller: 'categoryController',
 		templateUrl: 'templates/category.html',
 	});
 	$stateProvider.state('error', {
